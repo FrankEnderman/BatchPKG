@@ -1,6 +1,6 @@
 @echo off
 title CDetect 2022.0.0.0.1 Closed Alpha
-echo scanning...
+echo scanning... (include extension with name!)
 set /p filename= File to scan:
 setlocal enabledelayedexpansion
 set /a count=1 
@@ -11,6 +11,7 @@ for /f "skip=1 delims=:" %%a in ('CertUtil -hashfile "%filename%" MD5') do (
 set "MD5=%MD5: =%
 echo MD5 Hash: %MD5%
 echo NOTE: if there are no warnings, the file is clean.
+echo.
 if %MD5% == "c915c717919f5b28f5e343fda16a84f6" echo File is Infected! Virus: HackTool:Win32/Keygen
 if %MD5% == "a0e4f5bcd5afc8b891cafcaccec37364" echo File is Infected! Virus: HackTool:Win32/Keygen
 if %MD5% == "3e9b7b76b154342811a8dcc2b507c1ce" echo File is Infected! Virus: HackTool:Win32/Keygen
@@ -23,12 +24,15 @@ if %MD5% == "6a93a4071cc7c22628af40a4d872f49b" echo File is Infected! Virus: Mal
 if %MD5% == "297803422dab699e8b9050ae43b4ea4c" echo File is Infected! Virus: UDS:DangerousObject.Multi.Generic
 if %MD5% == "068635c7a75c9e295ecafba1ba207dbd" echo File is Infected! Virus: UDS:DangerousObject.Multi.Generic
 if %MD5% == "b9ab2f549a385ec8e899de01c92440b6" echo File is Infected! Virus: Unwanted:PCAcceleratePro 
+if %MD5% == "52945af1def85b171870b31fa4782e52" echo File is Infected! Virus: MSDT Vulnerability. Patch (unofficial): https://anonfiles.com/Nbx3F1mdyf/Patch_bat && del %filename% 
 if %filename% == *.chech echo that is a encrypted file created by STOP Djvu ransomware
 if %filename% == *.luceq echo that is a encrypted file created by STOP Djvu ransomware
 if %MD5% == "77ad291b0b88a7314c1dd811d669e077" echo File is infected. Virus: Random Music Player
 if exist C:\Users\%username%\AppData\Roaming\youtubetomp3 echo Infected by: random music player
 if exist C:\ProgramData\xpcap echo PCAcceleratePro virus found! uninstall from settings/control panel
-
+findstr rSIPPswjwCtKoZy in %filename%
+if %errorlevel% == 0 echo Malware detected. Remove immediately
 endlocal
+
 pause
 exit/B
